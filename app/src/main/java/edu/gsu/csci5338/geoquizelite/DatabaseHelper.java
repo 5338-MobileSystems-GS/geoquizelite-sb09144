@@ -10,9 +10,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "quiz";
 
     // Table columns
-    public static final String _ID = "_id";
-    public static final String SUBJECT = "subject";
-    public static final String DESC = "description";
+    public static final String _ID = "qid";
+    public static final String PANSWER = "provided_answer";
 
     // Database Information
     static final String DB_NAME = "bent.DB";
@@ -22,7 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Creating table query
     private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" + _ID
-            + " INTEGER PRIMARY KEY AUTOINCREMENT, " + SUBJECT + " TEXT NOT NULL, " + DESC + " TEXT);";
+            + " INTEGER PRIMARY KEY, " + PANSWER + " STRING);";
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);

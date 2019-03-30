@@ -32,6 +32,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     boolean whatIsAnswer;
     Context context = null;
     Toast toast;
+    private DBManager dbManager;
 
     // data is passed into the constructor
     RecyclerViewAdapter(Context context, ArrayList<Question> data) {
@@ -44,6 +45,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.recyclerview_row, parent, false);
         return new ViewHolder(view);
+
     }
 
     // binds the data to the TextView in each row
@@ -135,24 +137,26 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         numScore++;
                         totalAnswered++;
                         mData.get(index).setmAnswered();  //
-                        mData.get(index).setmAnswer("true"); //
+                        mData.get(index).setmAnswer("true");
                         trueButton.setBackgroundColor(GREEN);
                         falseButton.setClickable(false);
                         trueButton.setClickable(false);
                         cheatButton.setClickable(false);
                         cheatButton.setBackgroundColor(GRAY);
                         falseButton.setBackgroundColor(GRAY);
+                       // dbManager.update(index,"true");
                     }
                     else{
                         totalAnswered++;
-                        mData.get(index).setmAnswered();  //
-                        mData.get(index).setmAnswer("true"); //
+                        mData.get(index).setmAnswered();
+                        mData.get(index).setmAnswer("true");
                         trueButton.setBackgroundColor(RED);
                         falseButton.setClickable(false);
                         trueButton.setClickable(false);
                         cheatButton.setClickable(false);
                         cheatButton.setBackgroundColor(GRAY);
                         falseButton.setBackgroundColor(GRAY);
+                       // dbManager.update(index,"true");
                     }
                     if(totalAnswered == 10){
                         Intent intent = new Intent(v.getContext(), end_quiz.class);
@@ -173,14 +177,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     if(userPressedTrue == whatIsAnswer){
                         numScore++;
                         totalAnswered++;
-                        mData.get(index).setmAnswered();  //
-                        mData.get(index).setmAnswer("false"); //
+                        mData.get(index).setmAnswered();
+                        mData.get(index).setmAnswer("false");
                         falseButton.setBackgroundColor(GREEN);
                         cheatButton.setBackgroundColor(GRAY);
                         cheatButton.setClickable(false);
                         falseButton.setClickable(false);
                         trueButton.setClickable(false);
                         trueButton.setBackgroundColor(GRAY);
+                      //  dbManager.update(index,"false");
                     }
                     else{
                         totalAnswered++;
@@ -192,6 +197,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         cheatButton.setClickable(false);
                         trueButton.setClickable(false);
                         trueButton.setBackgroundColor(GRAY);
+                       // dbManager.update(index,"false");
                     }
                     if(totalAnswered == 10){
                         Intent intent = new Intent(v.getContext(), end_quiz.class);
@@ -205,12 +211,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 public void onClick(View v) {
                     totalAnswered++;
                     mData.get(index).ismAnswered();
+                    mData.get(index).setmAnswer("cheat");
                     falseButton.setBackgroundColor(GRAY);
                     falseButton.setClickable(false);
                     trueButton.setBackgroundColor(GRAY);
                     cheatButton.setClickable(false);
                     trueButton.setClickable(false);
                     cheatButton.setBackgroundColor(YELLOW);
+                 //   dbManager.update(index,"cheat");
                    // c.cheatClicked(v, index);
                     boolean answerIsTrue = mData.get(index).isAnswerTrue();
                     Intent i = new Intent (v.getContext(), CheatActivity.class);

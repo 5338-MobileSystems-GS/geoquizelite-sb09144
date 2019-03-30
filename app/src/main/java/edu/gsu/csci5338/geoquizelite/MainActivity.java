@@ -13,12 +13,11 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements RecyclerViewAdapter.ItemClickListener {
 
     RecyclerViewAdapter adapter;
+    private DBManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SQLiteDatabase mydatabase = openOrCreateDatabase("Bent",MODE_PRIVATE,null);
-        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS quiz(totalScore INT, answered BOOLEAN);");
         setContentView(R.layout.activity_main);
 
         // data to populate the RecyclerView with
@@ -55,8 +54,12 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
         q = new Question("The Sahara Desert has a greater area than USA", false);
         questionBank.add(q);
 
+        dbManager = new DBManager(this);
+        dbManager.open();
+
+
         // set up the RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.rvAnimals);
+        RecyclerView recyclerView = findViewById(R.id.main);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new RecyclerViewAdapter(this, questionBank);
         adapter.setClickListener(this);

@@ -28,15 +28,15 @@ public class DBManager {
         dbHelper.close();
     }
 
-    public void insert(String name, String desc) {
+    public void insert(int id, String panswer) {
         ContentValues contentValue = new ContentValues();
-        contentValue.put(DatabaseHelper.SUBJECT, name);
-        contentValue.put(DatabaseHelper.DESC, desc);
+        contentValue.put(DatabaseHelper._ID, id);
+        contentValue.put(DatabaseHelper.PANSWER, panswer);
         database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
     }
 
     public Cursor fetch() {
-        String[] columns = new String[] { DatabaseHelper._ID, DatabaseHelper.SUBJECT, DatabaseHelper.DESC };
+        String[] columns = new String[] { DatabaseHelper._ID, DatabaseHelper.PANSWER };
         Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, columns, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
@@ -44,11 +44,11 @@ public class DBManager {
         return cursor;
     }
 
-    public int update(long _id, String name, String desc) {
+    public int update(int id, String panswer) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseHelper.SUBJECT, name);
-        contentValues.put(DatabaseHelper.DESC, desc);
-        int i = database.update(DatabaseHelper.TABLE_NAME, contentValues, DatabaseHelper._ID + " = " + _id, null);
+        contentValues.put(DatabaseHelper._ID, id);
+        contentValues.put(DatabaseHelper.PANSWER, panswer);
+        int i = database.update(DatabaseHelper.TABLE_NAME, contentValues, DatabaseHelper._ID + " = " + id, null);
         return i;
     }
 
