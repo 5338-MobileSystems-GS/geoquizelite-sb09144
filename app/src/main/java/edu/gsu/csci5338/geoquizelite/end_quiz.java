@@ -29,6 +29,7 @@ public class end_quiz extends AppCompatActivity {
         String correctString = "Total Score: " + calculateScore + "%";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_quiz);
+        //
 
         correct = (TextView) findViewById(R.id.correct_answer_number);
        /* incorrect = (TextView) findViewById(R.id.incorrect_answer_number);
