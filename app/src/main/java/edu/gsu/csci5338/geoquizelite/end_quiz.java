@@ -30,7 +30,6 @@ public class end_quiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_quiz);
         //
-
         correct = (TextView) findViewById(R.id.correct_answer_number);
        /* incorrect = (TextView) findViewById(R.id.incorrect_answer_number);
         cheated = (TextView) findViewById(R.id.cheat_number);
