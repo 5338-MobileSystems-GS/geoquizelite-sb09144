@@ -2,13 +2,13 @@ package edu.gsu.csci5338.geoquizelite;
 
 public class Question {
     private String someString;
-    private boolean mAnswerTrue;
-    private boolean mAnswered = false;
-    private String mAnswer;
+    private boolean answerTrue;
+    private boolean answered = false;
+    private String answer;
 
     public Question(String question, boolean answerTrue){
         someString = question;
-        mAnswerTrue = answerTrue;
+        this.answerTrue = answerTrue;
     }
 
     public String getSomeString() {
@@ -20,26 +20,26 @@ public class Question {
     }
 
     public boolean isAnswerTrue() {
-        return mAnswerTrue;
+        return answerTrue;
     }
 
     public void setAnswerTrue(boolean answerTrue) {
-        mAnswerTrue = answerTrue;
+        this.answerTrue = answerTrue;
     }
 
-    public boolean ismAnswered() {
-        return mAnswered;
+    public boolean wasQuestionAnswered() {
+        return answered;
     }
 
-    public void setmAnswered() {
-        this.mAnswered = true;
+    public void setAnswered() {
+        this.answered = true;
     }
 
-    public String ismAnswer() {
-        return mAnswer;
+    public String userAnswered() {
+        return answer;
     }
 
-    public void setmAnswer(String mAnswer) {
-        this.mAnswer = mAnswer;
+    public void setAnswer(String mAnswer) {
+        this.answer = mAnswer;
     }
 }

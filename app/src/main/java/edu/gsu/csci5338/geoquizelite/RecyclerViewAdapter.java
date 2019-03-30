@@ -10,10 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Bundle;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static android.graphics.Color.GRAY;
 import static android.graphics.Color.*;
@@ -57,16 +55,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.setIndex(position);
 
 
-        if(!question.ismAnswered()){
+        if(!question.wasQuestionAnswered()){
             holder.trueButton.setBackgroundColor(WHITE);
             holder.falseButton.setBackgroundColor(WHITE);
             holder.cheatButton.setBackgroundColor(WHITE);
             holder.cheatButton.setClickable(true);
             holder.trueButton.setClickable(true);
             holder.falseButton.setClickable(true);
-        }//Boolean.parseBoolean(question.ismAnswer())
-        else if (question.ismAnswered()){
-            if(question.ismAnswer().contains("true")){
+        }//Boolean.parseBoolean(question.userAnswered())
+        else if (question.wasQuestionAnswered()){
+            if(question.userAnswered().contains("true")){
                 if(question.isAnswerTrue()){
                     holder.trueButton.setBackgroundColor(GREEN);
                     holder.falseButton.setClickable(false);
@@ -82,7 +80,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     holder.cheatButton.setClickable(false);
                     holder.falseButton.setBackgroundColor(GRAY);
                 }
-            }else if(question.ismAnswer().contains("false")){
+            }else if(question.userAnswered().contains("false")){
                 if(!question.isAnswerTrue()){
                     holder.falseButton.setBackgroundColor(GREEN);
                     holder.falseButton.setClickable(false);
@@ -136,8 +134,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     if(userPressedTrue == whatIsAnswer) {
                         numScore++;
                         totalAnswered++;
-                        mData.get(index).setmAnswered();  //
-                        mData.get(index).setmAnswer("true");
+                        mData.get(index).setAnswered();  //
+                        mData.get(index).setAnswer("true");
                         trueButton.setBackgroundColor(GREEN);
                         falseButton.setClickable(false);
                         trueButton.setClickable(false);
@@ -148,8 +146,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     }
                     else{
                         totalAnswered++;
-                        mData.get(index).setmAnswered();
-                        mData.get(index).setmAnswer("true");
+                        mData.get(index).setAnswered();
+                        mData.get(index).setAnswer("true");
                         trueButton.setBackgroundColor(RED);
                         falseButton.setClickable(false);
                         trueButton.setClickable(false);
@@ -177,8 +175,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     if(userPressedTrue == whatIsAnswer){
                         numScore++;
                         totalAnswered++;
-                        mData.get(index).setmAnswered();
-                        mData.get(index).setmAnswer("false");
+                        mData.get(index).setAnswered();
+                        mData.get(index).setAnswer("false");
                         falseButton.setBackgroundColor(GREEN);
                         cheatButton.setBackgroundColor(GRAY);
                         cheatButton.setClickable(false);
@@ -189,8 +187,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     }
                     else{
                         totalAnswered++;
-                        mData.get(index).setmAnswered();  //
-                        mData.get(index).setmAnswer("false"); //
+                        mData.get(index).setAnswered();  //
+                        mData.get(index).setAnswer("false"); //
                         falseButton.setBackgroundColor(RED);
                         falseButton.setClickable(false);
                         cheatButton.setBackgroundColor(GRAY);
@@ -210,8 +208,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 @Override
                 public void onClick(View v) {
                     totalAnswered++;
-                    mData.get(index).ismAnswered();
-                    mData.get(index).setmAnswer("cheat");
+                    mData.get(index).wasQuestionAnswered();
+                    mData.get(index).setAnswer("cheat");
                     falseButton.setBackgroundColor(GRAY);
                     falseButton.setClickable(false);
                     trueButton.setBackgroundColor(GRAY);
