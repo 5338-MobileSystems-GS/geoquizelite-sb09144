@@ -3,7 +3,7 @@ package edu.gsu.csci5338.geoquizelite;
 public class Question {
     private String someString;
     private boolean mAnswerTrue;
-    private boolean mAnswered;
+    private boolean mAnswered = false;
     private String mAnswer;
 
     public Question(String question, boolean answerTrue){

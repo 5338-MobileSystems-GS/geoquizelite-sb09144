@@ -204,12 +204,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 @Override
                 public void onClick(View v) {
                     totalAnswered++;
+                    mData.get(index).ismAnswered();
                     falseButton.setBackgroundColor(GRAY);
                     falseButton.setClickable(false);
-                    cheatButton.setBackgroundColor(GRAY);
+                    trueButton.setBackgroundColor(GRAY);
                     cheatButton.setClickable(false);
                     trueButton.setClickable(false);
-                    trueButton.setBackgroundColor(YELLOW);
+                    cheatButton.setBackgroundColor(YELLOW);
                    // c.cheatClicked(v, index);
                     boolean answerIsTrue = mData.get(index).isAnswerTrue();
                     Intent i = new Intent (v.getContext(), CheatActivity.class);

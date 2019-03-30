@@ -1,5 +1,6 @@
 package edu.gsu.csci5338.geoquizelite;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewAdapt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SQLiteDatabase mydatabase = openOrCreateDatabase("Bent",MODE_PRIVATE,null);
+        mydatabase.execSQL("CREATE TABLE IF NOT EXISTS quiz(totalScore INT, answered BOOLEAN);");
         setContentView(R.layout.activity_main);
 
         // data to populate the RecyclerView with
